@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Teko', sans-serif;
+}
+
+body{
+    background: linear-gradient(#00000099, #00000099), url("./bg.png") no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+    color: whitesmoke;
+    user-select: none;
+}
+
+.title{
+    margin-bottom: calc(30px + 3vw);
+}
+
+.title h1{
+    font-size: calc(10px + 4vw);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.container .content{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.container .content h1{
+    font-size: calc(10px + 5vw);
+    line-height: 0.8;
+}
+
+.container .content p{
+    font-size: calc(10px + 1vw);
+}
+
+.container .content i{
+    font-size: calc(10px + 1.5vw);
+    margin: 5px 0px 15px 0px;
+    cursor: pointer;
+    transition: color .15s;
+}
+
+.container .content i:hover{
+    color: #408045;
+}
+
+.button{
+    margin-top: 50px;
+    width: 30vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button button{
+    padding: 0px 20px;
+    border: 1px solid whitesmoke;
+    border-radius: 30px;
+    background: transparent;
+    color: whitesmoke;
+    font-size: calc(10px + 1.2vw);
+    cursor: pointer;
+    transition: background .25s;
+}
+
+.button button:hover{
+    background: #264e2a;
+}
