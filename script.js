@@ -53,6 +53,9 @@ const timerCount = (time, onoff) => {
         clearInterval(id);
         count(0);
         total = 0;
+        for (const i in UD) {
+            UD[i] = 0;
+        }
     }
 };
 
@@ -68,6 +71,8 @@ const upbtn2 = (dateid, item, x, value) => {
     UD[item] = (date[dateid].textContent * x);
     total = (UD[0] + UD[1] + UD[2] + UD[3]);
 };
+
+
 
 up.forEach(add => add.addEventListener('click', (e) => {
     switch (e.target.id) {
@@ -114,6 +119,7 @@ start.addEventListener('click', () => {
     if (OF && total !== 0) {
         timerCount(total, true);
         OF = false;
+        console.log(total);
     }
 });
 
@@ -121,4 +127,5 @@ reset.addEventListener('click', () => {
     timerCount(0, false);
     OF = true;
 });
+
 
