@@ -40,6 +40,10 @@ body{
     width: 100%;
 }
 
+.container .content div{
+    min-width: 88px;
+}
+
 .container .content h1{
     font-size: calc(10px + 5vw);
     line-height: 0.8;
