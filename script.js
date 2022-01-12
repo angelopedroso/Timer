@@ -1,4 +1,4 @@
-'user scrict'
+'use scrict'
 
 const up = document.querySelectorAll('[id*=up]');
 const down = document.querySelectorAll('[id*=down]');
@@ -11,10 +11,14 @@ let OF = true;
 
 let total = 0;
 let id;
-let upd = 0;
-let uph = 0;
-let upm = 0;
-let ups = 0;
+
+const UD = [
+    upd = 0,
+    uph = 0,
+    upm = 0,
+    ups = 0
+]
+
 
 const formField = (digit) => `0${digit}`.slice(-2);
 
@@ -52,130 +56,69 @@ const timerCount = (time, onoff) => {
     }
 };
 
+const upbtn = (dateid, item, x, y) => {
+    let num = formField(Number(date[dateid].textContent)+y);
+    date[dateid].textContent = num;
+    UD[item] = parseInt((date[dateid].textContent * x));
+    total = (UD[0] + UD[1] + UD[2] + UD[3]);
+};
+
+const upbtn2 = (dateid, item, x, value) => {
+    date[dateid].textContent = value;
+    UD[item] = (date[dateid].textContent * x);
+    total = (UD[0] + UD[1] + UD[2] + UD[3]);
+};
+
 up.forEach(add => add.addEventListener('click', (e) => {
-    let num = 0;
     switch (e.target.id) {
         case 'up1':
-            
-            if(!(date[0].textContent >= '99')){
-                num = formField(++date[0].textContent);
-                date[0].textContent = num;
-                upd = (date[0].textContent * 86400);
-                total = upd + uph + upm + ups;
-            } else{
-                date[0].textContent = '00';
-                upd = (date[0].textContent * 86400);
-                total = upd + uph + upm + ups;
-            }
+            !(date[0].textContent >= '99') ? upbtn(0, 0, 86400, 1) : upbtn2(0, 0, 86400, '00');
         break;
     
         case 'up2':
-            if(!(date[1].textContent >= '23')){
-                num = formField(++date[1].textContent);
-                date[1].textContent = num;
-                uph = (date[1].textContent * 3600);  
-                total = upd + uph + upm + ups;
-            } else{
-                date[1].textContent = '00';
-                uph = (date[1].textContent * 3600);
-                total = upd + uph + upm + ups;
-            }
+            !(date[1].textContent >= '23') ? upbtn(1, 1, 3600, 1) : upbtn2(1, 1, 3600, '00');
         break;
 
         case 'up3':
-            if(!(date[2].textContent >= '59')){
-                num = formField(++date[2].textContent);
-                date[2].textContent = num;
-                upm = (date[2].textContent * 60);
-                total = upd + uph + upm + ups;
-            } else{
-                date[2].textContent = '00';
-                upm = (date[2].textContent * 60);
-                total = upd + uph + upm + ups;
-            }
+            !(date[2].textContent >= '59') ? upbtn(2, 2, 60, 1) : upbtn2(2, 2, 60, '00');
         break;
 
         default:
-            if(!(date[3].textContent >= '59')){
-                num = formField(++date[3].textContent);
-                date[3].textContent = num;
-                ups = parseInt(date[3].textContent);
-                total = upd + uph + upm + ups;
-            } else{
-                date[3].textContent = '00';
-                ups = 0;
-                total = upd + uph + upm + ups;
-            }
+            !(date[3].textContent >= '59') ? upbtn(3, 3, 1, 1) : upbtn2(3, 3, 1, '00');
         break;
-    }
+    } 
 }));
 
 
 down.forEach(sub => sub.addEventListener('click', (e) => {
     switch (e.target.id) {
         case 'down1':
-            if (date[0].textContent <= '00') {
-                date[0].textContent = '99';
-                upd = (date[0].textContent * 86400);
-                total = upd + uph + upm + ups;
-            } else{
-                num = formField(--date[0].textContent);
-                date[0].textContent = num;
-                upd = (date[0].textContent * 86400);
-                total = upd + uph + upm + ups;
-            }
+            !(date[0].textContent <= '00') ? upbtn(0, 0, 86400, -1) : upbtn2(0, 0, 86400, '99');
         break;
     
         case 'down2':
-            if (date[1].textContent <= '00') {
-                date[1].textContent = '23';
-                uph = (date[1].textContent * 3600);
-                total = upd + uph + upm + ups;
-            } else{
-                num = formField(--date[1].textContent);
-                date[1].textContent = num;
-                uph = (date[1].textContent * 3600);
-                total = upd + uph + upm + ups;
-            }
+            !(date[1].textContent <= '00') ? upbtn(1, 1, 3600, -1) : upbtn2(1, 1, 3600, '23');
         break;
 
         case 'down3':
-            if (date[2].textContent <= '00') {
-                date[2].textContent = '59';
-                upm = (date[2].textContent * 60);
-                total = upd + uph + upm + ups;
-            } else{
-                num = formField(--date[2].textContent);
-                date[2].textContent = num;
-                upm = (date[2].textContent * 60);
-                total = upd + uph + upm + ups;
-            }
+            !(date[2].textContent <= '00') ? upbtn(2, 2, 60, -1) : upbtn2(2, 2, 60, '59');
         break;
 
         default:
-            if (date[3].textContent <= '00') {
-                date[3].textContent = '59';
-                ups = 0;
-                total = upd + uph + upm + ups;
-            } else{
-                num = formField(--date[3].textContent);
-                date[3].textContent = num;
-                ups = parseInt(date[3].textContent);
-                total = upd + uph + upm + ups;
-            }
+            !(date[3].textContent <= '00') ? upbtn(3, 3, 1, -1) : upbtn2(3, 3, 1, '59');
         break;
     }
 }));
 
-start.onclick = function() {
+start.addEventListener('click', () => {
     if (OF && total !== 0) {
         timerCount(total, true);
         OF = false;
     }
-};
+});
 
-reset.onclick = function() {
+reset.addEventListener('click', () => {
     timerCount(0, false);
     OF = true;
-};
+});
 
