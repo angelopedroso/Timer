@@ -45,6 +45,10 @@ const timerCount = (time, onoff) => {
         id = setInterval(() => {
             if (time === 0) {
                 clearInterval(id);
+                OF = true;
+                for (const i in UD) {
+                    UD[i] = 0;
+                }
             }
             count(time);
             time--;
@@ -118,9 +122,8 @@ down.forEach(sub => sub.addEventListener('click', (e) => {
 start.addEventListener('click', () => {
     if (OF && total !== 0) {
         timerCount(total, true);
-        OF = false;
-        console.log(total);
     }
+    OF = !OF;
 });
 
 reset.addEventListener('click', () => {
